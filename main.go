@@ -7,6 +7,8 @@ import (
 	"syscall"
 	"time"
 	"unsafe"
+
+	"github.com/Triballian/tanktool/clipboard"
 )
 
 const (
@@ -42,6 +44,7 @@ func (h *Hotkey) String() string {
 }
 
 func main() {
+	clipboard.WriteAll("TankTool")
 	user32 := syscall.MustLoadDLL("user32")
 	defer user32.Release()
 
