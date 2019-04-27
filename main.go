@@ -44,7 +44,7 @@ func (h *Hotkey) String() string {
 }
 
 func main() {
-	clipboard.WriteAll("TankTool")
+
 	user32 := syscall.MustLoadDLL("user32")
 	defer user32.Release()
 
@@ -80,6 +80,11 @@ func main() {
 		// Registered id is in the WPARAM field:
 		if id := msg.WPARAM; id != 0 {
 			fmt.Println("Hotkey pressed:", keys[id])
+			if id == 3 { // CTRL+ALT+X = Exit
+				fmt.Println("Boster Configuration Ready")
+				clipboard.WriteAll("Flanker 3;  game_stats_build 568568568568568567647477774754444")
+
+			}
 			if id == 4 { // CTRL+ALT+X = Exit
 				fmt.Println("CTRL+ALT+X pressed, goodbye...")
 				return
