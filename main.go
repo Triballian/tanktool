@@ -51,8 +51,9 @@ func main() {
 	keys := map[int16]*Hotkey{
 		1: &Hotkey{1, ModAlt + ModCtrl, 'O'},  // ALT+CTRL+O
 		2: &Hotkey{2, ModAlt + ModShift, 'M'}, // ALT+SHIFT+M
+		3: &Hotkey{3, ModCtrl, 'B'},           // ALT+SHIFT+b
 		4: &Hotkey{4, ModAlt + ModCtrl, 'X'},  // ALT+CTRL+X
-		//4: &Hotkey{4, ModAlt + ModCtrl, 'b'},  // ALT+CTRL+b
+
 		// add ctgr + b
 	}
 
@@ -82,7 +83,7 @@ func main() {
 			}
 		}
 
-		time.Sleep(time.Millisecond * 50)
+		time.Sleep(time.Millisecond * 25)
 	}
 }
 
