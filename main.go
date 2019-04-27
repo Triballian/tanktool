@@ -44,6 +44,7 @@ func (h *Hotkey) String() string {
 }
 
 func main() {
+	clipboard.WriteAll("Juggernaut build; game_stats_build 565656565677777444445675674422222")
 
 	user32 := syscall.MustLoadDLL("user32")
 	defer user32.Release()
@@ -52,10 +53,10 @@ func main() {
 
 	// Hotkeys to listen to:
 	keys := map[int16]*Hotkey{
-		1: &Hotkey{1, ModAlt + ModCtrl, 'O'},  // ALT+CTRL+O
-		2: &Hotkey{2, ModAlt + ModShift, 'M'}, // ALT+SHIFT+M
-		3: &Hotkey{3, ModCtrl, 'B'},           // ALT+SHIFT+b
-		4: &Hotkey{4, ModAlt + ModCtrl, 'X'},  // ALT+CTRL+X
+		1: &Hotkey{1, ModCtrl, 'O'},          // ALT+CTRL+O
+		2: &Hotkey{2, ModCtrl, 'J'},          // ALT+SHIFT+M
+		3: &Hotkey{3, ModCtrl, 'B'},          // ALT+SHIFT+b
+		4: &Hotkey{4, ModAlt + ModCtrl, 'X'}, // ALT+CTRL+X
 
 		// add ctgr + b
 	}
@@ -80,7 +81,17 @@ func main() {
 		// Registered id is in the WPARAM field:
 		if id := msg.WPARAM; id != 0 {
 			fmt.Println("Hotkey pressed:", keys[id])
-			if id == 3 { // CTRL+ALT+X = Exit
+			if id == 2 { // CTRL+O = Exit
+				fmt.Println("Overseer Configuration Ready")
+				clipboard.WriteAll("Overseer 3; game_stats_build 568568568568568564747474474477756")
+
+			}
+			if id == 2 { // CTRL+J = Exit
+				fmt.Println("Juggernaut Configuration Ready")
+				clipboard.WriteAll("Juggernaut build; game_stats_build 565656565677777444445675674422222")
+
+			}
+			if id == 3 { // CTRL+B = Exit
 				fmt.Println("Boster Configuration Ready")
 				clipboard.WriteAll("Flanker 3;  game_stats_build 568568568568568567647477774754444")
 
@@ -91,7 +102,7 @@ func main() {
 			}
 		}
 
-		time.Sleep(time.Millisecond * 10)
+		time.Sleep(time.Millisecond * 5)
 	}
 }
 
